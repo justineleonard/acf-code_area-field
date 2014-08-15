@@ -1,69 +1,49 @@
 <?php
+
 /*
 Plugin Name: Advanced Custom Fields: Code Area
-Plugin URI: https://github.com/taylormsj/acf-code_area-field
-Description: Adds a 'Code Area' textarea editor to the Advanced Custom Fields WordPress plugin.
-Version: 1.0.1
-Author: Taylor Mitchell-St.Joseph
-Author URI: https://taylormitchellstjoseph.co.uk
+Plugin URI: http://www.volume.net.au
+Description: Code Area ACF Plugin
+Version: 1.0.0
+Author: Justine Leonard
+Author URI: http://www.volume.net.au
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 
-class acf_field_code_area_plugin
-{
-	/*
-	*  Construct
-	*
-	*  @description: 
-	*  @since: 3.6
-	*  @created: 1/04/13
-	*/
-	
-	function __construct()
-	{
-		
-		// version 4+
-		add_action('acf/register_fields', array($this, 'register_fields'));	
 
-		
-		// version 3-
-		add_action( 'init', array( $this, 'init' ), 5);
-	}
+
+// 1. set text domain
+// Reference: https://codex.wordpress.org/Function_Reference/load_plugin_textdomain
+load_plugin_textdomain( 'acf-code_area', false, dirname( plugin_basename(__FILE__) ) . '/lang/' ); 
+
+
+
+
+// 2. Include field type for ACF5
+// $version = 5 and can be ignored until ACF6 exists
+function include_field_types_code_area( $version ) {
 	
-	
-	/*
-	*  Init
-	*
-	*  @description: 
-	*  @since: 3.6
-	*  @created: 1/04/13
-	*/
-	
-	function init()
-	{
-		if(function_exists('register_field'))
-		{ 
-			register_field('acf_field_code_area', dirname(__File__) . '/acf_code_area-v3.php');
-		}
-	}
-	
-	/*
-	*  register_fields
-	*
-	*  @description: 
-	*  @since: 3.6
-	*  @created: 1/04/13
-	*/
-	
-	function register_fields()
-	{
-		include_once('acf_code_area-v4.php');
-	}
+	include_once('acf-code_area-v5.php');
 	
 }
 
-new acf_field_code_area_plugin();
-		
+add_action('acf/include_field_types', 'include_field_types_code_area');	
+
+
+
+
+// 3. Include field type for ACF4
+function register_fields_code_area() {
+	
+	include_once('acf-code_area-v4.php');
+	
+}
+
+add_action('acf/register_fields', 'register_fields_code_area');	
+
+
+
+	
 ?>

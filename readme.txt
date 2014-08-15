@@ -28,7 +28,7 @@ Type your PHP, no <?php ?> tags needed (Note, you can not open and close php tag
 Output all types of code in the usual fashion the_field('code_area_field');
 
 
-**Compatible with both ACF V3 & V4**
+**Compatible with both ACF V4 & V5**
 
 == Installation ==
 
@@ -38,16 +38,6 @@ This add-on can be treated as both a WP plugin and a theme include.
 Copy the 'acf-code_area' folder into your plugins folder
 Activate the plugin via the Plugins admin page
 
-**Include within theme**
-Copy the 'acf-code_area' folder into your theme folder (can use sub folders). You can place the folder anywhere inside the 'wp-content' directory
-Edit your functions.php file and add the code below (Make sure the path is correct to include the acf-cf7.php file)
-
-`add_action('acf/register_fields', 'my_register_fields');
-
-function my_register_fields()
-{
-    include_once('acf_code_area-field/acf_code_area-v3.php');
-}`
 
 == Frequently asked questions ==
 
@@ -58,9 +48,4 @@ function my_register_fields()
 2. Editing a Code Area field
 
 
-== Changelog ==
-
-**1.0.1** - Fixed the editor. (replaced <?= with echo)
-
-== Upgrade notice ==
 
